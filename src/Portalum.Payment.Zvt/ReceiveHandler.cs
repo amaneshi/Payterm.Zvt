@@ -81,7 +81,7 @@ namespace Portalum.Payment.Zvt
         }
 
         /// <inheritdoc />
-        public bool ProcessData(Span<byte> data)
+        public bool ProcessData(byte[] data)
         {
             var apduInfo = ApduHelper.GetApduInfo(data);
             if (apduInfo.ControlField == null)

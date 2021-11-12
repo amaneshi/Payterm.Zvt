@@ -24,7 +24,7 @@ namespace Portalum.Payment.Zvt.Parsers
         }
 
         /// <inheritdoc />
-        public PrintLineInfo Parse(Span<byte> data)
+        public PrintLineInfo Parse(byte[] data)
         {
             /*
             Attribute Definition

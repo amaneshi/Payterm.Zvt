@@ -12,6 +12,6 @@ namespace Portalum.Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        string GetMessage(Span<byte> data);
+        string GetMessage(byte[] data);
     }
 }

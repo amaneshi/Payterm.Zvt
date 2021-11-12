@@ -130,7 +130,7 @@ namespace Portalum.Payment.Zvt.Parsers
             return bmpInfo;
         }
 
-        public bool Parse(Span<byte> data, IResponse response)
+        public bool Parse(byte[] data, IResponse response)
         {
             var currentPosition = 0;
 

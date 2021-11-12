@@ -47,7 +47,7 @@ namespace Portalum.Payment.Zvt.Parsers
         }
 
         /// <inheritdoc />
-        public ReceiptInfo Parse(Span<byte> data)
+        public ReceiptInfo Parse(byte[] data)
         {
             this._completelyProcessed = false;
 
@@ -67,7 +67,7 @@ namespace Portalum.Payment.Zvt.Parsers
 
         private bool SetReceiptType(byte[] data, IResponse response)
         {
-            if (data.Length == 0)
+            if (data == null || data.Length == 0)
             {
                 return true;
             }

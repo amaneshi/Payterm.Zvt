@@ -48,6 +48,6 @@ namespace Portalum.Payment.Zvt
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        bool ProcessData(Span<byte> data);
+        bool ProcessData(byte[] data);
     }
 }

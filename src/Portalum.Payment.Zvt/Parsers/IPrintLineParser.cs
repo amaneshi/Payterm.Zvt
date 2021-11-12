@@ -13,6 +13,6 @@ namespace Portalum.Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        PrintLineInfo Parse(Span<byte> data);
+        PrintLineInfo Parse(byte[] data);
     }
 }

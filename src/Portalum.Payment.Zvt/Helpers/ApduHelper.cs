@@ -9,9 +9,9 @@ namespace Portalum.Payment.Zvt.Helpers
         private const byte ExtendedLengthFieldIndicator = 0xFF;
         private const byte ExtendedLengthFieldByteCount = 2;
 
-        public static ApduResponseInfo GetApduInfo(Span<byte> data)
+        public static ApduResponseInfo GetApduInfo(byte[] data)
         {
-            if (data.Length < 3)
+            if (data == null || data.Length < 3)
             {
                 // More than 2 bytes required
                 //
@@ -39,7 +39,7 @@ namespace Portalum.Payment.Zvt.Helpers
             }
             else
             {
-                item.DataLength = BitConverter.ToInt16(data.Slice(startIndex, ExtendedLengthFieldByteCount));
+                item.DataLength = BitConverter.ToInt16(data.Slice(startIndex, ExtendedLengthFieldByteCount), 0);
                 item.DataStartIndex = startIndex + ExtendedLengthFieldByteCount;
             }
 

@@ -59,7 +59,7 @@ namespace Portalum.Payment.Zvt.Parsers
             return this.ParseInternal(tlvData, response);
         }
 
-        private bool ParseInternal(Span<byte> data, IResponse response)
+        private bool ParseInternal(byte[] data, IResponse response)
         {
             while (data.Length > 0)
             {
@@ -112,7 +112,7 @@ namespace Portalum.Payment.Zvt.Parsers
             return true;
         }
 
-        private bool ProcessTlvInfoAction(string tag, Span<byte> data, IResponse response)
+        private bool ProcessTlvInfoAction(string tag, byte[] data, IResponse response)
         {
             if (this._tlvInfos.TryGetValue(tag, out var tlvInfo))
             {
@@ -134,7 +134,7 @@ namespace Portalum.Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public TlvTagFieldInfo GetTagFieldInfo(Span<byte> data)
+        public TlvTagFieldInfo GetTagFieldInfo(byte[] data)
         {
             if (data == null || data.Length == 0)
             {
@@ -208,7 +208,7 @@ namespace Portalum.Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public TlvLengthInfo GetLength(Span<byte> data)
+        public TlvLengthInfo GetLength(byte[] data)
         {
             if (data == null || data.Length == 0)
             {
@@ -231,7 +231,7 @@ namespace Portalum.Payment.Zvt.Parsers
 
             if (bits.Bit0 && !bits.Bit1 && !bits.Bit2 && !bits.Bit3 && !bits.Bit4 && !bits.Bit5 && !bits.Bit6 && bits.Bit7)
             {
-                if (data.Length < 2)
+                if (data == null || data.Length < 2)
                 {
                     this._logger.LogWarning($"{nameof(GetLength)} - Not enough bytes available");
                     return new TlvLengthInfo { Successful = false };
@@ -242,7 +242,7 @@ namespace Portalum.Payment.Zvt.Parsers
 
             if (!bits.Bit0 && bits.Bit1 && !bits.Bit2 && !bits.Bit3 && !bits.Bit4 && !bits.Bit5 && !bits.Bit6 && bits.Bit7)
             {
-                if (data.Length < 3)
+                if (data == null || data.Length < 3)
                 {
                     this._logger.LogWarning($"{nameof(GetLength)} - Not enough bytes available");
                     return new TlvLengthInfo { Successful = false };

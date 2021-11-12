@@ -29,7 +29,7 @@ namespace Portalum.Payment.Zvt.Helpers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string ByteArrayToHex(Span<byte> data)
+        public static string ByteArrayToHex(byte[] data)
         {
             var hex = new StringBuilder(data.Length * 2);
             foreach (byte b in data)

@@ -77,7 +77,7 @@ namespace Portalum.Payment.Zvt.Helpers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static int BcdToInt(Span<byte> data)
+        public static int BcdToInt(byte[] data)
         {
             var tempNumber = ByteHelper.ByteArrayToHex(data);
             if (int.TryParse(tempNumber, out var number))
@@ -88,11 +88,11 @@ namespace Portalum.Payment.Zvt.Helpers
             return 0;
         }
 
-        public static short ToInt16LittleEndian(Span<byte> data)
+        public static short ToInt16LittleEndian(byte[] data)
         {
             var tempData = data.ToArray();
             Array.Reverse(tempData);
-            return BitConverter.ToInt16(tempData);
+            return BitConverter.ToInt16(tempData, 0);
         }
 
         public static int BoolArrayToInt(params bool[] boolArray)

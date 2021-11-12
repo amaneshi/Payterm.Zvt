@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Portalum.Payment.Zvt.Helpers;
 using Portalum.Payment.Zvt.Models;
 using Portalum.Payment.Zvt.Repositories;
 using Portalum.Payment.Zvt.Responses;
@@ -46,9 +47,9 @@ namespace Portalum.Payment.Zvt.Parsers
         }
 
         /// <inheritdoc />
-        public string GetMessage(Span<byte> data)
+        public string GetMessage(byte[] data)
         {
-            if (data.Length <= 3)
+            if (data == null || data.Length <= 3)
             {
                 this._logger.LogError($"{nameof(GetMessage)} - Invalid data length");
                 return null;
