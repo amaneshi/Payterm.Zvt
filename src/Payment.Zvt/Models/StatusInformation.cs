@@ -20,7 +20,11 @@ namespace Payment.Zvt.Models
         IResponseReceiptNumber,
         IResponseTraceNumber,
         IResponseVuNumber,
-        IResponseAidAuthorisationAttribute
+        IResponseAidAuthorisationAttribute,
+        IResponseExpiryDate,
+        IResponseCardSequenceNumber,
+        IResponseTurnoverRecordNumber,
+        IResponseCardType
     {
         /// <summary>
         /// ErrorMessage
@@ -74,5 +78,25 @@ namespace Payment.Zvt.Models
         /// AidAuthorisationAttribute
         /// </summary>
         public string AidAuthorisationAttribute { get; set; }
+        /// <summary>
+        /// ExpiryDateYear
+        /// </summary>
+        public int ExpiryDateYear { get; set; }
+        /// <summary>
+        /// ExpiryDateMonth
+        /// </summary>
+        public int ExpiryDateMonth { get; set; }
+        /// <summary>
+        /// CardSequenceNumber
+        /// </summary>
+        public int CardSequenceNumber { get; set; }
+        /// <summary>
+        /// TurnoverRecordNumber
+        /// </summary>
+        public int TurnoverRecordNumber { get; set; }
+        /// <summary>
+        /// CardType
+        /// </summary>
+        public string CardType { get; set; }
     }
 }
