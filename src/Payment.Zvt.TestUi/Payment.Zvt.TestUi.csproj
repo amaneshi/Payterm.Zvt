@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Portalum.Payment.Zvt\Portalum.Payment.Zvt.csproj" />
+    <ProjectReference Include="..\Payment.Zvt\Payment.Zvt.csproj" />
   </ItemGroup>
 
 </Project>

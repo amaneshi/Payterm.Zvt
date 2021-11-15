@@ -49,12 +49,14 @@ namespace Portalum.Payment.Zvt
             this._logger = logger;
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <inheritdoc />
         protected virtual void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
