@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<Authors>Tino Hager, Max Hontar</Authors>
-		<Company>GBL Ltd</Company>
+		<Company>Portalum GmbH, GBL Ltd</Company>
 		<Description>Implementation of the ZVT protocol for easy communication with the payment terminal, communication via tcp/ip (.Net Standard 2.0 version)</Description>
 
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -17,7 +17,7 @@
 
 		<TargetFramework>netstandard2.0</TargetFramework>
 
-		<Version>1.4.2</Version>
+		<Version>2.0.0</Version>
 		<LangVersion>8</LangVersion>
 	</PropertyGroup>
 
