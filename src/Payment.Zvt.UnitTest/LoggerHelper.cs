@@ -3,7 +3,7 @@ using Moq;
 using System;
 using System.Diagnostics;
 
-namespace Portalum.Payment.Zvt.UnitTest
+namespace Payment.Zvt.UnitTest
 {
     public static class LoggerHelper
     {

@@ -1,14 +1,22 @@
-﻿using Portalum.Payment.Zvt.Models;
+﻿using Payment.Zvt.Models;
 using System;
 
-namespace Portalum.Payment.Zvt.Helpers
+namespace Payment.Zvt.Helpers
 {
+    /// <summary>
+    /// Apdu Helper
+    /// </summary>
     public static class ApduHelper
     {
         private const int ControlFieldLength = 2;
         private const byte ExtendedLengthFieldIndicator = 0xFF;
         private const byte ExtendedLengthFieldByteCount = 2;
 
+        /// <summary>
+        /// Get Apdu Info
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static ApduResponseInfo GetApduInfo(byte[] data)
         {
             if (data == null || data.Length < 3)

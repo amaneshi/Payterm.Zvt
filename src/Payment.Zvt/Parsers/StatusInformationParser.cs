@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
-using Portalum.Payment.Zvt.Models;
-using Portalum.Payment.Zvt.Repositories;
-using Portalum.Payment.Zvt.Responses;
+using Payment.Zvt.Models;
+using Payment.Zvt.Repositories;
+using Payment.Zvt.Responses;
 using System;
 
-namespace Portalum.Payment.Zvt.Parsers
+namespace Payment.Zvt.Parsers
 {
     /// <summary>
     /// StatusInformationParser

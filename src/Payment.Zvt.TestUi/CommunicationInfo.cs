@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Portalum.Payment.Zvt.TestUi
+namespace Payment.Zvt.TestUi
 {
     public class CommunicationInfo
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Portalum.Payment.Zvt.Helpers
+namespace Payment.Zvt.Helpers
 {
     /// <summary>
     /// ByteHelper

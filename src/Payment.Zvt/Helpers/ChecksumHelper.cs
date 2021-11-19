@@ -1,9 +1,17 @@
 ﻿using System.Collections.Generic;
 
-namespace Portalum.Payment.Zvt.Helpers
+namespace Payment.Zvt.Helpers
 {
+    /// <summary>
+    /// Checksum Helper
+    /// </summary>
     public static class ChecksumHelper
     {
+        /// <summary>
+        /// Calc Crc2
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static ushort CalcCrc2(IEnumerable<byte> data)
         {
             int crc;

@@ -1,15 +1,18 @@
 ﻿using Microsoft.Extensions.Logging;
-using Portalum.Payment.Zvt.Helpers;
-using Portalum.Payment.Zvt.Models;
-using Portalum.Payment.Zvt.Repositories;
-using Portalum.Payment.Zvt.Responses;
+using Payment.Zvt.Helpers;
+using Payment.Zvt.Models;
+using Payment.Zvt.Repositories;
+using Payment.Zvt.Responses;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Portalum.Payment.Zvt.Parsers
+namespace Payment.Zvt.Parsers
 {
+    /// <summary>
+    /// BmpParser
+    /// </summary>
     public class BmpParser
     {
         private readonly ILogger _logger;
@@ -18,6 +21,12 @@ namespace Portalum.Payment.Zvt.Parsers
 
         private readonly Dictionary<byte, BmpInfo> _bmpInfos;
 
+        /// <summary>
+        /// BmpParser
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="errorMessageRepository"></param>
+        /// <param name="tlvParser"></param>
         public BmpParser(
             ILogger logger,
             IErrorMessageRepository errorMessageRepository,
@@ -130,6 +139,12 @@ namespace Portalum.Payment.Zvt.Parsers
             return bmpInfo;
         }
 
+        /// <summary>
+        /// Parse
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="response"></param>
+        /// <returns></returns>
         public bool Parse(byte[] data, IResponse response)
         {
             var currentPosition = 0;

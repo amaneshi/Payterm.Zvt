@@ -1,7 +1,7 @@
-﻿using Portalum.Payment.Zvt.Models;
+﻿using Payment.Zvt.Models;
 using System;
 
-namespace Portalum.Payment.Zvt.Parsers
+namespace Payment.Zvt.Parsers
 {
     /// <summary>
     /// StatusInformationParser Interface

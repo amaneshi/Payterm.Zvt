@@ -2,8 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
+    /// <summary>
+    /// IDeviceCommunication
+    /// </summary>
     public interface IDeviceCommunication
     {
         /// <summary>

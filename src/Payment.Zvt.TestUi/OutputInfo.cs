@@ -1,4 +1,4 @@
-﻿namespace Portalum.Payment.Zvt.TestUi
+﻿namespace Payment.Zvt.TestUi
 {
     internal class OutputInfo
     {

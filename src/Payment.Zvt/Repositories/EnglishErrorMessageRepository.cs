@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Portalum.Payment.Zvt.Repositories
+namespace Payment.Zvt.Repositories
 {
     /// <summary>
     /// English ErrorMessageRepository

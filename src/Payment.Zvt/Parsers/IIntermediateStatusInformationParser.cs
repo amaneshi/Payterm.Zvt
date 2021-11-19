@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Portalum.Payment.Zvt.Parsers
+namespace Payment.Zvt.Parsers
 {
     /// <summary>
     /// IntermediateStatusInformationParser Interface

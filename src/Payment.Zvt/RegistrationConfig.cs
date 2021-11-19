@@ -1,6 +1,6 @@
-﻿using Portalum.Payment.Zvt.Helpers;
+﻿using Payment.Zvt.Helpers;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
     /// <summary>
     /// Payment Terminal Registration Config

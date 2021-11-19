@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
     /// <summary>
     /// TcpNetwork DeviceCommunication
@@ -31,7 +31,7 @@ namespace Portalum.Payment.Zvt
         /// <param name="logger"></param>
         public TcpNetworkDeviceCommunication(
             string ipAddress,
-            int port = 20007,
+            int port = 81,//20007,
             ILogger<TcpNetworkDeviceCommunication> logger = default)
         {
             this._simpleTcpClient = new SimpleTcpClient(ipAddress, port);

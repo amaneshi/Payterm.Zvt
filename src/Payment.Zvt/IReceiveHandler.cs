@@ -1,7 +1,7 @@
-﻿using Portalum.Payment.Zvt.Models;
+﻿using Payment.Zvt.Models;
 using System;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
     /// <summary>
     /// ReceiveHandler Interface

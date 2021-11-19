@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using Portalum.Payment.Zvt.Helpers;
-using Portalum.Payment.Zvt.Models;
-using Portalum.Payment.Zvt.Responses;
+using Payment.Zvt.Helpers;
+using Payment.Zvt.Models;
+using Payment.Zvt.Responses;
 using System;
 using System.Collections.Generic;
 
-namespace Portalum.Payment.Zvt.Parsers
+namespace Payment.Zvt.Parsers
 {
     /// <summary>
     /// TlvParser

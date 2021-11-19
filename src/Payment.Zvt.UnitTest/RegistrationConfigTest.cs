@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Portalum.Payment.Zvt.UnitTest
+namespace Payment.Zvt.UnitTest
 {
     [TestClass]
     public class RegistrationConfigTest

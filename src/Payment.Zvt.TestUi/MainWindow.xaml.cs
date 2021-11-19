@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Portalum.Payment.Zvt.Models;
+using Payment.Zvt.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,7 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 
-namespace Portalum.Payment.Zvt.TestUi
+namespace Payment.Zvt.TestUi
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

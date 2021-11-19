@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Portalum.Payment.Zvt.Helpers;
+using Payment.Zvt.Helpers;
 using System;
 using System.Linq;
 
-namespace Portalum.Payment.Zvt.UnitTest
+namespace Payment.Zvt.UnitTest
 {
     [TestClass]
     public class ReceiveHandlerTest

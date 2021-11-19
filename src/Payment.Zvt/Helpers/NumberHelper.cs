@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Portalum.Payment.Zvt.Helpers
+namespace Payment.Zvt.Helpers
 {
     /// <summary>
     /// NumberHelper
@@ -88,6 +88,11 @@ namespace Portalum.Payment.Zvt.Helpers
             return 0;
         }
 
+        /// <summary>
+        /// ToInt16LittleEndian
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static short ToInt16LittleEndian(byte[] data)
         {
             var tempData = data.ToArray();
@@ -95,6 +100,11 @@ namespace Portalum.Payment.Zvt.Helpers
             return BitConverter.ToInt16(tempData, 0);
         }
 
+        /// <summary>
+        /// BoolArrayToInt
+        /// </summary>
+        /// <param name="boolArray"></param>
+        /// <returns></returns>
         public static int BoolArrayToInt(params bool[] boolArray)
         {
             if (boolArray.Length > 31)

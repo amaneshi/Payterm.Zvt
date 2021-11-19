@@ -5,7 +5,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Windows.Controls;
 
-namespace Portalum.Payment.Zvt.TestUi
+namespace Payment.Zvt.TestUi
 {
     /// <summary>
     /// Interaction logic for CommunicationUserControl.xaml

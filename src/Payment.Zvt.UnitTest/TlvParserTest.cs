@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Portalum.Payment.Zvt.Models;
-using Portalum.Payment.Zvt.Parsers;
+using Payment.Zvt.Models;
+using Payment.Zvt.Parsers;
 
-namespace Portalum.Payment.Zvt.UnitTest
+namespace Payment.Zvt.UnitTest
 {
     [TestClass]
     public class TlvParserTest

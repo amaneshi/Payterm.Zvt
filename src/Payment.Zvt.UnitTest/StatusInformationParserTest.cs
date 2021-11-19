@@ -1,10 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Portalum.Payment.Zvt.Helpers;
-using Portalum.Payment.Zvt.Parsers;
-using Portalum.Payment.Zvt.Repositories;
+using Payment.Zvt.Helpers;
+using Payment.Zvt.Parsers;
+using Payment.Zvt.Repositories;
 using System;
 
-namespace Portalum.Payment.Zvt.UnitTest
+namespace Payment.Zvt.UnitTest
 {
     [TestClass]
     public class StatusInformationParserTest

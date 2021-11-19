@@ -1,5 +1,8 @@
-﻿namespace Portalum.Payment.Zvt.Responses
+﻿namespace Payment.Zvt.Responses
 {
+    /// <summary>
+    /// IResponse
+    /// </summary>
     public interface IResponse
     {
     }

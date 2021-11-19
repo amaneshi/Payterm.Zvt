@@ -1,4 +1,4 @@
-﻿namespace Portalum.Payment.Zvt
+﻿namespace Payment.Zvt
 {
     /// <summary>
     /// CommandResponse

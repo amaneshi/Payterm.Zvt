@@ -1,9 +1,15 @@
 ﻿using System;
 
-namespace Portalum.Payment.Zvt.Responses
+namespace Payment.Zvt.Responses
 {
+    /// <summary>
+    /// IResponseTime
+    /// </summary>
     public interface IResponseTime
     {
+        /// <summary>
+        /// Time
+        /// </summary>
         TimeSpan Time { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
     /// <summary>
     /// ZvtCommunication, automatic acknowledge processing
@@ -38,12 +38,17 @@ namespace Portalum.Payment.Zvt
             this._deviceCommunication.DataReceived += this.ProcessDataReceived;
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

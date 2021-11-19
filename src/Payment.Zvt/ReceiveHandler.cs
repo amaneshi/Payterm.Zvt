@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using Portalum.Payment.Zvt.Helpers;
-using Portalum.Payment.Zvt.Models;
-using Portalum.Payment.Zvt.Parsers;
-using Portalum.Payment.Zvt.Repositories;
+using Payment.Zvt.Helpers;
+using Payment.Zvt.Models;
+using Payment.Zvt.Parsers;
+using Payment.Zvt.Repositories;
 using System;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
     /// <summary>
     /// ReceiveHandler

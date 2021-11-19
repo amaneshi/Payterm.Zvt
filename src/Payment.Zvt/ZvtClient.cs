@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Portalum.Payment.Zvt.Helpers;
-using Portalum.Payment.Zvt.Models;
-using Portalum.Payment.Zvt.Repositories;
+using Payment.Zvt.Helpers;
+using Payment.Zvt.Models;
+using Payment.Zvt.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
     /// <summary>
     /// ZVT Protocol Client
@@ -27,9 +27,21 @@ namespace Portalum.Payment.Zvt
         private readonly ZvtCommunication _zvtCommunication;
         private readonly IReceiveHandler _receiveHandler;
 
+        /// <summary>
+        /// StatusInformationReceived
+        /// </summary>
         public event Action<StatusInformation> StatusInformationReceived;
+        /// <summary>
+        /// IntermediateStatusInformationReceived
+        /// </summary>
         public event Action<string> IntermediateStatusInformationReceived;
+        /// <summary>
+        /// LineReceived
+        /// </summary>
         public event Action<PrintLineInfo> LineReceived;
+        /// <summary>
+        /// ReceiptReceived
+        /// </summary>
         public event Action<ReceiptInfo> ReceiptReceived;
 
         /// <summary>

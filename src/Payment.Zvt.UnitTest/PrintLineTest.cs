@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Portalum.Payment.Zvt.Helpers;
-using Portalum.Payment.Zvt.Models;
-using Portalum.Payment.Zvt.Repositories;
+using Payment.Zvt.Helpers;
+using Payment.Zvt.Models;
+using Payment.Zvt.Repositories;
 using System.Diagnostics;
 
-namespace Portalum.Payment.Zvt.UnitTest
+namespace Payment.Zvt.UnitTest
 {
     [TestClass]
     public class PrintLineTest

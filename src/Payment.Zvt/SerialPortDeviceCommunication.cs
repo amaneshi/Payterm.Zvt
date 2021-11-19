@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
-using Portalum.Payment.Zvt.Helpers;
+using Payment.Zvt.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Portalum.Payment.Zvt
+namespace Payment.Zvt
 {
     /// <summary>
     /// SerialPort DeviceCommunication
@@ -24,6 +24,9 @@ namespace Portalum.Payment.Zvt
         /// <inheritdoc />
         public event Action<ConnectionState> ConnectionStateChanged;
 
+        /// <summary>
+        /// DLE
+        /// </summary>
         public const byte DLE = 0x10;
 
         /// <summary>
@@ -39,12 +42,17 @@ namespace Portalum.Payment.Zvt
             throw new NotImplementedException("We currently only use network payment terminals");
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
@@ -93,6 +101,9 @@ namespace Portalum.Payment.Zvt
             return Task.FromResult(false);
         }
 
+        /// <summary>
+        /// Disconnected event handler
+        /// </summary>
         private void Disconnected()
         {
             this._logger?.LogInformation($"{nameof(Disconnected)}");
@@ -124,9 +135,15 @@ namespace Portalum.Payment.Zvt
 
             this._logger?.LogDebug($"{nameof(SendAsync)} - {BitConverter.ToString(package)}");
             //TODO: Add send logic
+            await Task.Delay(1000);
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Receive event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="data"></param>
         private void Receive(object sender, byte[] data)
         {
             this._logger?.LogDebug($"{nameof(Receive)} - {BitConverter.ToString(data)}");

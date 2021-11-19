@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Portalum.Payment.Zvt.TestUi
+namespace Payment.Zvt.TestUi
 {
     /// <summary>
     /// Interaction logic for App.xaml

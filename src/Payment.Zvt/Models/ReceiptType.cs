@@ -1,4 +1,4 @@
-﻿namespace Portalum.Payment.Zvt.Models
+﻿namespace Payment.Zvt.Models
 {
     /// <summary>
     /// Receipt Type

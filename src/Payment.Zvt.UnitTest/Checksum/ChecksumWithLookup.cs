@@ -1,4 +1,4 @@
-﻿namespace Portalum.Payment.Zvt.UnitTest
+﻿namespace Payment.Zvt.UnitTest
 {
     public static class ChecksumWithLookup
     {
