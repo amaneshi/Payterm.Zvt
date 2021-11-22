@@ -73,6 +73,35 @@ namespace Payment.Zvt
         }
 
         /// <summary>
+        /// Connect to server
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> ConnectAsync()
+        {
+            if (await this._deviceCommunication.ConnectAsync())
+            {
+                return true;
+            }
+            this._logger.LogError($"{nameof(ConnectAsync)} - Cannot connect to payterm");
+            return false;
+        }
+
+        /// <summary>
+        /// Disconnect from server
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> DisconnectAsync()
+        {
+            if (await this._deviceCommunication.DisconnectAsync())
+            {
+                this._logger.LogDebug($"{nameof(DisconnectAsync)} - Manual disconnect from payterm");
+                return true;
+            }
+            this._logger.LogError($"{nameof(DisconnectAsync)} - Cannot disconnect from payterm");
+            return false;
+        }
+
+        /// <summary>
         /// Send command
         /// </summary>
         /// <param name="data"></param>

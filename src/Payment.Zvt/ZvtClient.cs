@@ -95,7 +95,7 @@ namespace Payment.Zvt
             {
                 this._receiveHandler = receiveHandler;
             }
-            
+
             this._receiveHandler.IntermediateStatusInformationReceived += this.ProcessIntermediateStatusInformationReceived;
             this._receiveHandler.StatusInformationReceived += this.ProcessStatusInformationReceived;
             this._receiveHandler.LineReceived += this.ProcessLineReceived;
@@ -105,7 +105,6 @@ namespace Payment.Zvt
 
             this._zvtCommunication = new ZvtCommunication(logger, deviceCommunication);
             this._zvtCommunication.DataReceived += this.DataReceived;
-
         }
 
         /// <summary>
@@ -163,7 +162,7 @@ namespace Payment.Zvt
             }
         }
 
-        private async Task<CommandResponseState> SendCommandAsync(byte[] commandData, int commandResultTimeout = 90000)
+        private async Task<CommandResponseState> SendCommandAsync(byte[] commandData, int commandResultTimeout = 90000, bool isShort = false)
         {
             using var cancellationTokenSource = new CancellationTokenSource();
             var commandResult = CommandResponseState.Unknown;
@@ -186,6 +185,13 @@ namespace Payment.Zvt
                 cancellationTokenSource.Cancel();
             }
 
+            if (!await this._zvtCommunication.ConnectAsync())
+            {
+                this._logger.LogError($"{nameof(SendCommandAsync)} - Cannot connect to payterm");
+                commandResult = CommandResponseState.Error;
+                cancellationTokenSource.Cancel();
+            }
+
             try
             {
                 this._receiveHandler.CompletionReceived += completionReceived;
@@ -197,7 +203,13 @@ namespace Payment.Zvt
                 if (!await this._zvtCommunication.SendCommandAsync(commandData))
                 {
                     this._logger.LogError($"{nameof(SendCommandAsync)} - Failure on send command");
-                    return CommandResponseState.Error;
+                    commandResult = CommandResponseState.Error;
+                    cancellationTokenSource.Cancel();
+                }
+
+                if (isShort)
+                {
+                    completionReceived();
                 }
 
                 await Task.Delay(commandResultTimeout, cancellationTokenSource.Token).ContinueWith(task =>
@@ -214,6 +226,7 @@ namespace Payment.Zvt
                 this._receiveHandler.NotSupportedReceived -= notSupportedReceived;
                 this._receiveHandler.AbortReceived -= abortReceived;
                 this._receiveHandler.CompletionReceived -= completionReceived;
+                await this._zvtCommunication.DisconnectAsync();
             }
 
             return commandResult;
@@ -442,7 +455,7 @@ namespace Payment.Zvt
             var package = new List<byte>();
 
             var fullPackage = this.CreatePackage(new byte[] { 0x06, 0x02 }, package);
-            var responseStatus = await this.SendCommandAsync(fullPackage);
+            var responseStatus = await this.SendCommandAsync(fullPackage, isShort: true);
 
             return new CommandResponse
             {

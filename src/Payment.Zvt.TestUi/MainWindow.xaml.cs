@@ -47,7 +47,7 @@ namespace Payment.Zvt.TestUi
             this._zvtClient?.Dispose();
         }
 
-        private async void ButtonConnect_Click(object sender, RoutedEventArgs e)
+        private void ButtonConnect_Click(object sender, RoutedEventArgs e)
         {
             var loggerCommunication = this._loggerFactory.CreateLogger<TcpNetworkDeviceCommunication>();
             var loggerZvtClient = this._loggerFactory.CreateLogger<ZvtClient>();
@@ -56,22 +56,14 @@ namespace Payment.Zvt.TestUi
 
             var ipAddress = this.TextBoxIpAddress.Text;
             this._deviceCommunication = new TcpNetworkDeviceCommunication(ipAddress, logger: loggerCommunication);
-            this._deviceCommunication.ConnectionStateChanged += ConnectionStateChanged;
 
             this.CommunicationUserControl.SetDeviceCommunication(this._deviceCommunication);
-
-            if (!await this._deviceCommunication.ConnectAsync())
-            {
-                this.TextBoxIpAddress.Background = Brushes.OrangeRed;
-                MessageBox.Show("Cannot connect");
-                return;
-            }
 
             this.TextBoxIpAddress.Background = Brushes.GreenYellow;
             this.ButtonDisconnect.IsEnabled = true;
             this.ButtonConnect.IsEnabled = false;
 
-            this._zvtClient = new ZvtClient(this._deviceCommunication, logger: loggerZvtClient, language: Zvt.Language.German);
+            this._zvtClient = new ZvtClient(this._deviceCommunication, logger: loggerZvtClient, language: Zvt.Language.English);
             this._zvtClient.LineReceived += this.LineReceived;
             this._zvtClient.ReceiptReceived += this.ReceiptReceived;
             this._zvtClient.StatusInformationReceived += this.StatusInformationReceived;
@@ -257,24 +249,17 @@ namespace Payment.Zvt.TestUi
             });
         }
 
-        private async void ButtonDisconnect_Click(object sender, RoutedEventArgs e)
+        private void ButtonDisconnect_Click(object sender, RoutedEventArgs e)
         {
-            if (!await this.DisconnectAsync())
+            if (!this.Disconnect())
             {
                 MessageBox.Show("Cannot disconnect");
                 return;
             }
         }
 
-        private async Task<bool> DisconnectAsync()
+        private bool Disconnect()
         {
-            if (!await this._deviceCommunication.DisconnectAsync())
-            {
-                return false;
-            }
-
-            this._deviceCommunication.ConnectionStateChanged -= ConnectionStateChanged;
-
             if (this._deviceCommunication is IDisposable disposable)
             {
                 disposable.Dispose();
@@ -286,27 +271,16 @@ namespace Payment.Zvt.TestUi
             this._zvtClient.IntermediateStatusInformationReceived -= this.IntermediateStatusInformationReceived;
             this._zvtClient?.Dispose();
 
-            this.Dispatcher.Invoke(() =>
-            {
-                this.ButtonDisconnect.IsEnabled = false;
-                this.ButtonConnect.IsEnabled = true;
-                this.TextBoxIpAddress.Background = Brushes.White;
-            });
+            this.ButtonDisconnect.IsEnabled = false;
+            this.ButtonConnect.IsEnabled = true;
+            this.TextBoxIpAddress.Background = Brushes.White;
 
             return true;
         }
 
-        private void ConnectionStateChanged(ConnectionState connectionState)
-        {
-            if (connectionState == ConnectionState.Disconnected)
-            {
-                this.DisconnectAsync().GetAwaiter().GetResult();
-            }
-        }
-
         private async Task RegistrationAsync(RegistrationConfig registrationConfig)
         {
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }
@@ -322,7 +296,7 @@ namespace Payment.Zvt.TestUi
 
         private async Task PaymentAsync(decimal amount)
         {
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }
@@ -338,7 +312,7 @@ namespace Payment.Zvt.TestUi
 
         private async Task EndOfDayAsync()
         {
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }
@@ -354,7 +328,7 @@ namespace Payment.Zvt.TestUi
 
         private async Task RepeatLastReceiptAsync()
         {
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }
@@ -414,7 +388,7 @@ namespace Payment.Zvt.TestUi
                 return;
             }
 
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }
@@ -422,9 +396,9 @@ namespace Payment.Zvt.TestUi
             await this._zvtClient?.RefundAsync(amount);
         }
 
-        private async  void ButtonReversal_Click(object sender, RoutedEventArgs e)
+        private async void ButtonReversal_Click(object sender, RoutedEventArgs e)
         {
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }
@@ -439,7 +413,7 @@ namespace Payment.Zvt.TestUi
 
         private async void ButtonLogOff_Click(object sender, RoutedEventArgs e)
         {
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }
@@ -449,7 +423,7 @@ namespace Payment.Zvt.TestUi
 
         private async void ButtonDiagnosis_Click(object sender, RoutedEventArgs e)
         {
-            if (this._zvtClient == null || !this._deviceCommunication.IsConnected)
+            if (this._zvtClient == null)
             {
                 return;
             }

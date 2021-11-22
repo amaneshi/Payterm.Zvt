@@ -12,8 +12,8 @@
                 <Grid Background="#FFE5E5E5">
                     <TextBox x:Name="TextBoxIpAddress" HorizontalAlignment="Left"  Text="192.168.2.250" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" Margin="8,20,0,0" Height="19" FontSize="13"/>
                     <Label Content="Terminal IpAddress:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,0,0,0" FontSize="10"/>
-                    <Button x:Name="ButtonConnect" Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ButtonConnect_Click" Width="58" Margin="116,19,0,0"/>
-                    <Button x:Name="ButtonDisconnect" Content="Disconnect" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ButtonDisconnect_Click" Width="70" Margin="178,19,0,0"/>
+                    <Button x:Name="ButtonConnect" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ButtonConnect_Click" Width="58" Margin="116,19,0,0"/>
+                    <Button x:Name="ButtonDisconnect" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ButtonDisconnect_Click" Width="70" Margin="178,19,0,0"/>
                     <Button x:Name="ButtonRegistration" Content="Registration" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ButtonRegistration_Click" Width="90" Height="29" Margin="7,48,0,0"/>
                     <Button x:Name="ButtonEndOfDay" Content="End of Day" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ButtonEndOfDay_Click" Width="90" Height="29" Margin="7,82,0,0"/>
                     <Border BorderThickness="1" BorderBrush="#FF727070" Margin="7,174,0,0" Height="50

@@ -31,7 +31,7 @@ namespace Payment.Zvt
         /// <param name="logger"></param>
         public TcpNetworkDeviceCommunication(
             string ipAddress,
-            int port = 81,//20007,
+            int port = 20007,
             ILogger<TcpNetworkDeviceCommunication> logger = default)
         {
             this._simpleTcpClient = new SimpleTcpClient(ipAddress, port);
