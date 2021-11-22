@@ -55,11 +55,12 @@ namespace Payment.Zvt.Parsers
                 return null;
             }
 
+            var length = data[2];
             var id = data[3];
             //var timeout = data[4];
 
             //Detect TLV Text
-            if (id == 0xFF)
+            if (length > 1 && id == 0xFF)
             {
                 if (data.Length <= 6)
                 {
