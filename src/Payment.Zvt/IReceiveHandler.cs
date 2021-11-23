@@ -48,6 +48,6 @@ namespace Payment.Zvt
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        bool ProcessData(byte[] data);
+        bool ProcessData(Span<byte> data);
     }
 }

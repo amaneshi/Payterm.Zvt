@@ -13,6 +13,6 @@ namespace Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        StatusInformation Parse(byte[] data);
+        StatusInformation Parse(Span<byte> data);
     }
 }

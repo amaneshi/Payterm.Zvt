@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Payment.Zvt.Helpers
 {
@@ -11,49 +7,6 @@ namespace Payment.Zvt.Helpers
     /// </summary>
     public static class Extentions
     {
-        /// <summary>
-        /// Span Slice polyfill
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="start"></param>
-        /// <param name="length"></param>
-        /// <returns></returns>
-        public static byte[] Slice(this byte[] data, int start, int length)
-        {
-            return data.Skip(start).Take(length).ToArray();
-        }
-
-        /// <summary>
-        /// Span Slice polyfill
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="start"></param>
-        /// <returns></returns>
-        public static byte[] Slice(this byte[] data, int start)
-        {
-            return data.Skip(start).ToArray();
-        }
-
-        /// <summary>
-        /// Span ToArray polyfill
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static byte[] ToArray(this byte[] data)
-        {
-            return data.Clone() as byte[];
-        }
-
-        /// <summary>
-        /// Byte[] asSpan polyfill
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static byte[] AsSpan(this byte[] data)
-        {
-            return data.Clone() as byte[];
-        }
-
         /// <summary>
         /// Dictionary TryAdd polyfill
         /// </summary>

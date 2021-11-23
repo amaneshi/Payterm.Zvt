@@ -91,7 +91,7 @@ namespace Payment.Zvt
         }
 
         /// <inheritdoc />
-        public bool ProcessData(byte[] data)
+        public bool ProcessData(Span<byte> data)
         {
             var apduInfo = ApduHelper.GetApduInfo(data);
             if (apduInfo.ControlField == null)
@@ -108,9 +108,11 @@ namespace Payment.Zvt
                 if (fragment)
                 {
                     this._logger.LogWarning($"{nameof(ProcessData)} - Apdu data part possible fragmentation");
-                    return true;
                 }
-                this._logger.LogError($"{nameof(ProcessData)} - Apdu data part corrupt");
+                else
+                {
+                    this._logger.LogError($"{nameof(ProcessData)} - Apdu data part corrupt");
+                }
                 return false;
             }
 
@@ -181,51 +183,42 @@ namespace Payment.Zvt
             return false;
         }
 
-        private bool CheckBuffer(ApduResponseInfo apduInfo, byte[] data, out bool fragment)
+        private bool CheckBuffer(ApduResponseInfo apduInfo, Span<byte> data, out bool possibleFragment)
         {
-            fragment = false;
-            if (this._buffer == null
-                && (apduInfo.CanHandle(0x04, 0x0F)
+            possibleFragment = false;
+            if (apduInfo.CanHandle(0x04, 0x0F)
                 || apduInfo.CanHandle(0x04, 0xFF)
                 || apduInfo.CanHandle(0x06, 0xD1)
                 || apduInfo.CanHandle(0x06, 0xD3)
                 || apduInfo.CanHandle(0x84, 0x83)
                 || apduInfo.CanHandle(0x06, 0x0F)
                 || apduInfo.CanHandle(0x06, 0x1E))
-                )
             {
-                this._buffer = data;
-                fragment = true;
+                this._buffer = data.ToArray();
+                possibleFragment = true;
                 return false;
             }
 
-            var newBuffer = new byte[this._buffer.Length + data.Length];
-            Array.Copy(this._buffer, newBuffer, this._buffer.Length);
-            Array.Copy(data, 0, newBuffer, this._buffer.Length, data.Length);
-            var newApduInfo = ApduHelper.GetApduInfo(newBuffer);
-            var packageLength = newApduInfo.DataStartIndex + newApduInfo.DataLength;
-            if (newBuffer.Length < packageLength)
+            if (this._buffer != null || this._buffer.Length > 0)
             {
-                this._buffer = newBuffer;
-                return false;
-            }
-            if (newBuffer.Length >= packageLength)
-            {
-                this._package = new byte[packageLength];
-                Array.Copy(newBuffer, this._package, packageLength);
-                if (newBuffer.Length == packageLength)
+                var newBuffer = new Span<byte>(new byte[this._buffer.Length + data.Length]);
+                this._buffer.CopyTo(newBuffer.Slice(0, this._buffer.Length));
+                data.CopyTo(newBuffer.Slice(this._buffer.Length, data.Length));
+                var newApduInfo = ApduHelper.GetApduInfo(newBuffer);
+                var packageLength = newApduInfo.DataStartIndex + newApduInfo.DataLength;
+                if (newBuffer.Length < packageLength)
                 {
-                    this._buffer = null;
+                    this._buffer = newBuffer.ToArray();
+                    return false;
                 }
-                else
-                {
-                    var newBufferLength = newBuffer.Length - packageLength;
-                    this._buffer = new byte[newBufferLength];
-                    Array.Copy(newBuffer, packageLength, this._buffer, 0, newBufferLength);
-                }
-            }
 
-            return true;
+                this._package = newBuffer.Slice(0, packageLength).ToArray();
+                var remainingLength = newBuffer.Length - packageLength;
+                this._buffer = newBuffer.Slice(packageLength, remainingLength).ToArray();
+
+                return true;
+            }
+            return false;
         }
     }
 }

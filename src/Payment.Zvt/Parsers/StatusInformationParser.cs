@@ -47,7 +47,7 @@ namespace Payment.Zvt.Parsers
         }
 
         /// <inheritdoc />
-        public StatusInformation Parse(byte[] data)
+        public StatusInformation Parse(Span<byte> data)
         {
             var statusInformation = new StatusInformation();
 

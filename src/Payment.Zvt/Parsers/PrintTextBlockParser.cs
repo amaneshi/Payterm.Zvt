@@ -47,7 +47,7 @@ namespace Payment.Zvt.Parsers
         }
 
         /// <inheritdoc />
-        public ReceiptInfo Parse(byte[] data)
+        public ReceiptInfo Parse(Span<byte> data)
         {
             this._completelyProcessed = false;
 

@@ -77,7 +77,7 @@ namespace Payment.Zvt.Helpers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static int BcdToInt(byte[] data)
+        public static int BcdToInt(Span<byte> data)
         {
             var tempNumber = ByteHelper.ByteArrayToHex(data);
             if (int.TryParse(tempNumber, out var number))
@@ -93,7 +93,7 @@ namespace Payment.Zvt.Helpers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static short ToInt16LittleEndian(byte[] data)
+        public static short ToInt16LittleEndian(Span<byte> data)
         {
             var tempData = data.ToArray();
             Array.Reverse(tempData);

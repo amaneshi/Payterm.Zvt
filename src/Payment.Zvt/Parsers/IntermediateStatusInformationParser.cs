@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Payment.Zvt.Helpers;
 using Payment.Zvt.Models;
 using Payment.Zvt.Repositories;
 using Payment.Zvt.Responses;
@@ -47,9 +46,9 @@ namespace Payment.Zvt.Parsers
         }
 
         /// <inheritdoc />
-        public string GetMessage(byte[] data)
+        public string GetMessage(Span<byte> data)
         {
-            if (data == null || data.Length <= 3)
+            if (data.Length <= 3)
             {
                 this._logger.LogError($"{nameof(GetMessage)} - Invalid data length");
                 return null;

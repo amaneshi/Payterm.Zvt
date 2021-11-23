@@ -189,7 +189,7 @@ namespace Payment.Zvt.Parsers
         /// <param name="data"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public bool Parse(byte[] data, IResponse response)
+        public bool Parse(Span<byte> data, IResponse response)
         {
             var currentPosition = 0;
 

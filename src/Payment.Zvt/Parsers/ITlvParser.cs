@@ -21,7 +21,7 @@ namespace Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        TlvLengthInfo GetLength(byte[] data);
+        TlvLengthInfo GetLength(Span<byte> data);
 
     }
 }

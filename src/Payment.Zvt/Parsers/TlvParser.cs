@@ -59,7 +59,7 @@ namespace Payment.Zvt.Parsers
             return this.ParseInternal(tlvData, response);
         }
 
-        private bool ParseInternal(byte[] data, IResponse response)
+        private bool ParseInternal(Span<byte> data, IResponse response)
         {
             while (data.Length > 0)
             {
@@ -112,7 +112,7 @@ namespace Payment.Zvt.Parsers
             return true;
         }
 
-        private bool ProcessTlvInfoAction(string tag, byte[] data, IResponse response)
+        private bool ProcessTlvInfoAction(string tag, Span<byte> data, IResponse response)
         {
             if (this._tlvInfos.TryGetValue(tag, out var tlvInfo))
             {
@@ -134,9 +134,9 @@ namespace Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public TlvTagFieldInfo GetTagFieldInfo(byte[] data)
+        public TlvTagFieldInfo GetTagFieldInfo(Span<byte> data)
         {
-            if (data == null || data.Length == 0)
+            if (data == default || data.Length == 0)
             {
                 return null;
             }
@@ -208,9 +208,9 @@ namespace Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public TlvLengthInfo GetLength(byte[] data)
+        public TlvLengthInfo GetLength(Span<byte> data)
         {
-            if (data == null || data.Length == 0)
+            if (data == default || data.Length == 0)
             {
                 return new TlvLengthInfo { Successful = false };
             }
@@ -231,7 +231,7 @@ namespace Payment.Zvt.Parsers
 
             if (bits.Bit0 && !bits.Bit1 && !bits.Bit2 && !bits.Bit3 && !bits.Bit4 && !bits.Bit5 && !bits.Bit6 && bits.Bit7)
             {
-                if (data == null || data.Length < 2)
+                if (data.Length < 2)
                 {
                     this._logger.LogWarning($"{nameof(GetLength)} - Not enough bytes available");
                     return new TlvLengthInfo { Successful = false };
@@ -242,7 +242,7 @@ namespace Payment.Zvt.Parsers
 
             if (!bits.Bit0 && bits.Bit1 && !bits.Bit2 && !bits.Bit3 && !bits.Bit4 && !bits.Bit5 && !bits.Bit6 && bits.Bit7)
             {
-                if (data == null || data.Length < 3)
+                if (data.Length < 3)
                 {
                     this._logger.LogWarning($"{nameof(GetLength)} - Not enough bytes available");
                     return new TlvLengthInfo { Successful = false };

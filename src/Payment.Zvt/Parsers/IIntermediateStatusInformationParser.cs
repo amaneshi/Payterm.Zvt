@@ -12,6 +12,6 @@ namespace Payment.Zvt.Parsers
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        string GetMessage(byte[] data);
+        string GetMessage(Span<byte> data);
     }
 }
